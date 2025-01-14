@@ -12,6 +12,36 @@ Sample Variance: $S^2 = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X})^2$\\
 $\hat{\theta}_{\text{MLE}} = \arg \max_{\theta} \prod_{i=1}^{n} f(X_i \| \theta) = \arg \max_{\theta} \sum_{i=1}^{n} \log f(X_i \| \theta)$\\
 $\Rightarrow \frac{\partial_{\mathcal{L}}(\theta)}{\partial_\theta}$
 
+\subsection{MMSE:}
+linear MMSE: 
+$h(a, b) = \expected[(X - aY - b)^2]$\\
+objective: minimize $h(a, b)$\\
+solution: $a = \frac{\text{Cov}(X, Y)}{\text{Var}(Y)} = \rho \frac{\sigma_X}{\sigma_Y}$, $b = \expected[X] - a \expected[Y]$
+
+multiple MMSE:
+% matrix form using covs 
+\[
+\begin{bmatrix}
+\sigma_{X_1}^2 & \sigma_{X_1 X_2} \\
+\sigma_{X_1 X_2} & \sigma_{X_2}^2
+\end{bmatrix}
+\begin{bmatrix}
+a_1^* \\
+a_2^*
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathrm{Cov}(X_1, Y) \\
+\mathrm{Cov}(X_2, Y)
+\end{bmatrix}
+\]
+
+\text{Covariance Matrix}
+
+$
+\hat{Y}(X_1, X_2) = a_1^* (X_1 - \mathbb{E}[X_1]) + a_2^* (X_2 - \mathbb{E}[X_2]) + \mathbb{E}[Y]
+$
+
 \subsection{Hypothesis Testing:}
 Null Hypothesis: $H_0: \theta = \theta_0$\\
 Alternative Hypothesis: $H_1: \theta \neq \theta_0$\\
