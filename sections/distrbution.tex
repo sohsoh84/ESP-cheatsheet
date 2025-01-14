@@ -1,0 +1,32 @@
+\newcommand{\printdistribution}[5]{
+        \textbf{#1}: $#2$
+        \[\mu =  #3, Var =  #4\]\[MGF= #5\]
+}
+\section{Distrbutions}
+\printdistribution{Bernoulli}{\begin{cases}
+        1 - p & \text{if } x = 0 \\
+        p & \text{if } x = 1
+\end{cases}}{p}{pq}{q + pe^t}
+\printdistribution{Binomial}{{n \choose k} p^k q^{n - k}}{np}{npq}{(q + pe^t)^n}
+\printdistribution{Geometric}{
+        p (1-p)^{k-1}
+}{\frac{1}{p}}{\frac{1 - p}{p^2}}{\frac{p e^t}{1 - (1 - p) e^t}}
+\printdistribution{Poisson}{
+    \frac{e^{-\lambda} \lambda^{k}}{k!}
+}{\lambda}{\lambda}{e^{\lambda (e^t - 1)}}
+\printdistribution{Normal}{
+    \frac{1}{\sqrt{2 \pi \sigma^2}} e^{ -\frac{(k - \mu)^2}{2 \sigma^2} }
+}{\mu}{\sigma^2}{e^{\mu t + \frac{1}{2} \sigma^2 t^2}}
+\printdistribution{Exponential}{
+    \lambda e^{ -\lambda k }
+}{\frac{1}{\lambda}}{\frac{1}{\lambda^2}}{\frac{\lambda}{\lambda - t}, \ t < \lambda}
+\printdistribution{Uniform}{
+    \frac{1}{b - a}, \quad a \leq k \leq b
+}{\frac{a + b}{2}}{\frac{(b - a)^2}{12}}{\frac{e^{b t} - e^{a t}}{t (b - a)}}
+\printdistribution{Beta}{
+    \frac{k^{\alpha -1} (1 - k)^{\beta -1}}{B(\alpha, \beta)}, \quad 0 \leq k \leq 1
+}{\frac{\alpha}{\alpha + \beta}}{\frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta +1)}}{{}_2F_1(\alpha, \alpha + \beta; \alpha + \beta +1; t)}
+% Gamma Distribution
+\printdistribution{Gamma}{
+    \frac{\beta^{\alpha} k^{\alpha -1} e^{-\beta k}}{\Gamma(\alpha)}
+}{\frac{\alpha}{\beta}}{\frac{\alpha}{\beta^2}}{\left(\frac{\beta}{\beta - t}\right)^{\alpha}, \ t < \beta}

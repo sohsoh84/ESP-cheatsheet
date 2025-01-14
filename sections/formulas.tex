@@ -1,0 +1,102 @@
+\newcommand{\prob}{\ensuremath{\mathbb{P}}}
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\expected}{\ensuremath{\mathbb{E}}}
+\section{Formulas}
+\subsection{Probability Formulas}
+$A \ind B \Leftrightarrow \prob(A \| B) = \prob(A) \& \prob(B \| A) = \prob(B) \Leftrightarrow \prob(A \cap B) = \prob(A) \cdot \prob(B)$\\
+Union Bound: $\prob(\cup_{i=1}^{n} A_i) \leq \sum_{i=1}^{n} \prob(A_i)$\\
+Bayes' Rule: $\prob(A \| B) = \frac{\prob(B \| A) \cdot \prob(A)}{\prob(B)}$\\
+Law of Total Probability: $\prob(A) = \sum_{i=1}^{n} \prob(A \| B_i) \cdot \prob(B_i)$\\
+Chain Rule: $\prob(A_1 \cap A_2 \cap \ldots \cap A_n) = \prob(A_1) \cdot \prob(A_2 \| A_1) \cdot \ldots \cdot \prob(A_n \| A_1 \cap \ldots \cap A_{n-1})$\\
+Conditional Independence: $A \ind B \| C \Leftrightarrow \prob(A \| B \cap C) = \prob(A \| C)$\\
+\subsection{Expected Value and Variance}
+% linear property of expectation
+$\mathbb{E}[aX + b] = a\mathbb{E}[X] + b$\\
+% variance
+$\text{Var}(X) = \mathbb{E}[X^2] - \mathbb{E}[X]^2 = \expected((X - \expected(X))^2)$\\
+% linearity of variance if X and Y are independent
+$\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$ if $X \ind Y$\\
+% variance of a constant times a random variable
+$\text{Var}(aX) = a^2 \text{Var}(X)$\\
+\subsection{Moments and MGF}
+% moment k 
+$\mu_k = \expected(X^k)$\\
+% centered moment k
+$\overline{\mu_k} = \expected((X - \expected(X))^k)$\\
+% MGF
+$M_X(t) = \expected(e^{tX})$\\
+% MGF of a sum of independent random variables
+$M_{X+Y}(t) = M_X(t) \cdot M_Y(t)$ if $X \ind Y$\\
+% kth moment using MGF
+$\mu_k = M_X^{(k)}(0)$\\
+% expected of conditional expectation
+$\expected[\expected[X \| Y]] = \expected[X]$\\
+
+\subsection{function of random variables}
+% expectation of a function of a random variable
+$\expected[g(X)] = \sum_{x} g(x) \cdot \prob(X = x)$\\
+% pdf of a function of a random variable
+$f_Y(y) = f_X(g^{-1}(y)) \cdot \left| \frac{d}{dy} g^{-1}(y) \right|$\\
+\subsection{Common Distributions}
+% joint CDF:
+$F_{X,Y}(x, y) = \prob(X \leq x, Y \leq y)$\\
+% joint PDF:
+$f_{X,Y}(x, y) = \frac{\partial^2}{\partial x \partial y} F_{X,Y}(x, y)$\\
+% marginal PDF:
+$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x, y) dy$\\
+% Independence of random variables
+$X \ind Y \Leftrightarrow f_{X,Y}(x, y) = f_X(x) \cdot f_Y(y)$\\
+% jointly gaussian pdf 
+Jointly Gaussian:
+\begin{align*}
+        f_{X,Y}(x, y) &= \frac{1}{2\pi \sigma_X \sigma_Y \sqrt{1 - \rho^2}} \exp\left(-\frac{1}{2(1 - \rho^2)} \right. \\
+        &\quad \left. \left( \left(\frac{x - \mu_X}{\sigma_X}\right)^2 \right. \right. \\
+        &\quad \left. \left. - 2\rho\left(\frac{x - \mu_X}{\sigma_X}\right)\left(\frac{y - \mu_Y}{\sigma_Y}\right) \right. \right. \\
+        &\quad \left. \left. + \left(\frac{y - \mu_Y}{\sigma_Y}\right)^2 \right) \right)
+\end{align*}
+        % conditional pdf
+$f_{X \| Y}(x \| y) = \frac{f_{X,Y}(x, y)}{f_Y(y)}$\\
+% conditional expectation
+$\expected[X \| Y = y] = \int_{-\infty}^{\infty} x \cdot f_{X \| Y}(x \| y) dx$\\
+\subsection{Normal Distribution}
+% linear sum of normal random variables
+if $X \sim \mathcal{N}(\mu_X, \sigma_X^2)$ and $Y \sim \mathcal{N}(\mu_Y, \sigma_Y^2)$, then $X + Y \sim \mathcal{N}(\mu_X + \mu_Y, \sigma_X^2 + \sigma_Y^2)$\\
+% conditional gaussian 
+if X and Y are jointly Gaussian, then $X \| Y = y \sim \mathcal{N}(\mu_X + \rho \frac{\sigma_X}{\sigma_Y}(y - \mu_Y), \sigma_X^2(1 - \rho^2))$\\
+\subsection{Covaariance and Correlation}
+% covariance
+$\text{Cov}(X, Y) = \expected[(X - \expected(X))(Y - \expected(Y))] = \expected(XY) - \expected(X)\expected(Y)$\\
+% correlation
+$\text{Corr}(X, Y) = \frac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$\\
+% independence of random variables
+if two random variables are linearly independent then $\text{Cov}(X, Y) = 0$\\
+% covariance of a linear combination of random variables
+$\text{Cov}(aX + b, cY + d) = ac \text{Cov}(X, Y)$ (independent of a,b,c,d)\\
+% 2 var moments
+$\mu_{i,j} = \expected(X^i Y^j)$\\
+% centeral moments of 2 var
+$\overline{\mu_{i,j}} = \expected((X - \expected(X))^i (Y - \expected(Y))^j)$\\
+\subsection{CLT and LLN}
+% Central Limit Theorem
+Central Limit Theorem:\\
+$\frac{\bar{X} - \mu}{\sigma / \sqrt{n}} \rightarrow \mathcal{N}(0, 1)$ as $n \rightarrow \infty$\\ \\
+% Law of Large Numbers
+Law of Large Numbers:\\
+$\bar{X} \rightarrow \mu$ as $n \rightarrow \infty$\\
+
+\subsection{Functions of multiple Random Variables}
+% jacobi matrix defenition
+$J = \begin{bmatrix}
+        \frac{\partial g_1}{\partial x_1} & \ldots & \frac{\partial g_1}{\partial x_n} \\
+        \vdots & \ddots & \vdots \\
+        \frac{\partial g_m}{\partial x_1} & \ldots & \frac{\partial g_m}{\partial x_n}
+\end{bmatrix}$\\
+
+% pdf of a function of multiple random variables
+\begin{center}
+        $f_{Y_1, \ldots, Y_m}(y_1, \ldots, y_m)$
+        $=f_{X_1, \ldots, X_n}(g_1^{-1}(y_1, \ldots, y_m)$
+        $\ldots, g_m^{-1}(y_1, \ldots, y_m)) \cdot det(J)$\\
+\end{center}
+
+% End of ESP-cheatsheet/sections/formulas.tex

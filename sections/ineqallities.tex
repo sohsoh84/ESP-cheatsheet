@@ -1,0 +1,31 @@
+\section{Probability Inequalities}
+\subsection{Markov's Inequality}
+For any non-negative random variable $X$ and any $a > 0$:
+\[
+    \prob(X \geq a) \leq \frac{\expected[X]}{a}
+\]
+\subsection{Chebyshev's Inequality}
+For any random variable $X$ and any $a > 0$:
+\[
+    \prob(|X - \expected[X]| \geq a) \leq \frac{\text{Var}(X)}{a^2}
+\]
+\subsection{Chernoff Bound}
+For any random variable $X$ and any $t > 0$:
+\[
+    \prob(X \geq (1 + \delta) \expected[X]) \leq \left( \frac{e^{\delta}}{(1 + \delta)^{1 + \delta}} \right)^{\expected[X]}
+\]
+\[
+    \prob(X \leq (1 - \delta) \expected[X]) \leq \left( \frac{e^{-\delta}}{(1 - \delta)^{1 - \delta}} \right)^{\expected[X]}
+\]
+\subsection{Jensen's Inequality}
+For any random variable $X$ and any convex function $f$:
+\[
+    f(\expected[X]) \leq \expected[f(X)]
+\]
+\subsection{Cauchy-Schwarz Inequality}
+For any random variables $X$ and $Y$:
+\[
+    \expected[XY]^2 \leq \expected[X^2] \cdot \expected[Y^2]
+\]
+
+and the equality holds if and only if $X = aY$ for some $a \in \mathbb{R}$.
