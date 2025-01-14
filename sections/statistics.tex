@@ -14,9 +14,9 @@ $\Rightarrow \frac{\partial_{\mathcal{L}}(\theta)}{\partial_\theta}$
 
 \subsection{MMSE:}
 linear MMSE: 
-$h(a, b) = \expected[(X - aY - b)^2]$\\
+$h(a, b) = \expected[(Y - aX - b)^2]$\\
 objective: minimize $h(a, b)$\\
-solution: $a = \frac{\text{Cov}(X, Y)}{\text{Var}(Y)} = \rho \frac{\sigma_X}{\sigma_Y}$, $b = \expected[X] - a \expected[Y]$
+solution: $a = \frac{\text{Cov}(X, Y)}{\text{Var}(X)} = \rho \frac{\sigma_Y}{\sigma_X}$, $b = \expected[Y] - a \expected[X]$
 
 multiple MMSE:
 % matrix form using covs 
